@@ -1,0 +1,48 @@
+grade_points = {
+    'A': 5,
+    'B': 4,
+    'C': 3,
+    'D': 2,
+    'E': 1,
+    'F': 0
+}
+
+def calculate_average(n, grades):
+    total_weighted_score = 0
+    total_weight = 0
+
+    for weight, grade in grades:
+        total_weighted_score += weight * grade_points[grade]
+        total_weight += weight
+
+    average_score = total_weighted_score / total_weight
+    return average_score
+
+def score_to_grade(score):
+    if score >= 4:
+        return 'A'
+    elif score >= 3:
+        return 'B'
+    elif score >= 2:
+        return 'C'
+    elif score >= 1:
+        return 'D'
+    elif score >= 0:
+        return 'E'
+    else:
+        return 'F'
+
+n = int(input("تعداد امتحانات: "))
+grades = []
+
+for i in range(n):
+    print(f"لطفاً وزن و نمره امتحان {i + 1} را وارد کنید :")
+    line = input().strip().split()
+    weight = int(line[0])
+    grade = line[1]
+    grades.append((weight, grade))
+
+average_score = calculate_average(n, grades)
+
+result_grade = score_to_grade(average_score)
+print(f"میانگین نمرات: {result_grade}")
