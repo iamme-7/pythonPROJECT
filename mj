@@ -1,0 +1,51 @@
+def create_grid(size):
+    return [['  ' for _ in range(size)] for _ in range(size)]
+
+
+def plot_path(grid, points, n):
+    path = [points[i] for i in sorted(points.keys()) if i <= n]
+
+    x, y = path[0]
+    grid[x][y] = '* '
+
+    for (next_x, next_y) in path[1:]:
+        while (x, y) != (next_x, next_y):
+            if x < next_x:
+                x += 1
+            elif x > next_x:
+                x -= 1
+            elif y < next_y:
+                y += 1
+            elif y > next_y:
+                y -= 1
+
+            grid[x][y] = '* ' if (x, y) == (next_x, next_y) else '- '
+
+
+def print_grid(grid):
+    for row in grid:
+        print(' '.join(row))
+
+
+points = {
+    1: (4, 4),
+    2: (3, 4),
+    3: (3, 3),
+    4: (5, 3),
+    5: (5, 5),
+    6: (2, 5),
+    7: (2, 2),
+    8: (6, 2),
+    9: (6, 6),
+    10: (1, 6),
+    11: (1, 1),
+    12: (7, 1),
+    13: (7, 7),
+    14: (0, 7)
+}
+
+n = int(input("Enter the point number (0 ≤ n ≤ 100): "))
+size = 9
+grid = create_grid(size)
+plot_path(grid, points, n)
+print_grid(grid)
