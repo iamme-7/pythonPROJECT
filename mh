@@ -1,0 +1,26 @@
+def main():
+    print("لطفاً تعداد شهرها و تعداد خطوط هوایی را وارد کنید (n m):")
+    n, m = map(int, input().split())
+
+    cities = []
+    print("لطفاً نام شهرها را وارد کنید:")
+    for _ in range(n):
+        cities.append(input().strip())
+
+    flights = {city: [] for city in cities}
+
+    print("لطفاً خطوط هوایی را به صورت 'مبدا مقصد' وارد کنید:")
+    for _ in range(m):
+        source, destination = input().strip().split()
+        flights[source].append(destination)
+
+
+    print("\nخروجی:")
+    for city in cities:
+        print(len(flights[city]))
+        for dest in flights[city]:
+            print(dest)
+
+
+if __name__ == "__main__":
+    main()
