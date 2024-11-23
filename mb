@@ -1,0 +1,26 @@
+def sort_string(input_string):
+    cleaned_string = ''.join(input_string.split())
+
+    special_chars = []
+    digits = []
+    letters = []
+
+    for char in cleaned_string:
+        if char.isalpha():
+            letters.append(char)
+        elif char.isdigit():
+            digits.append(char)
+        else:
+            special_chars.append(char)
+
+    letters.sort()
+    digits.sort()
+
+    sorted_string = ''.join(special_chars) + ''.join(digits) + ''.join(letters)
+
+    return sorted_string
+
+
+input_string = input("لطفا رشته ورودی را وارد کنید: ")
+output_string = sort_string(input_string)
+print(output_string)
