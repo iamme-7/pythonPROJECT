@@ -1,34 +1,26 @@
-def is_prime(num):
-    if num < 2:
-        return False
-    for i in range(2, int(num**0.5) + 1):
-        if num % i == 0:
-            return False
-    return True
+def sort_string(input_string):
+    cleaned_string = ''.join(input_string.split())
 
-def sieve(n):
-    prime = [True] * (n + 1)
-    p = 2
-    while (p * p <= n):
-        if (prime[p] == True):
-            for i in range(p * p, n + 1, p):
-                prime[i] = False
-        p += 1
-    return prime
+    special_chars = []
+    digits = []
+    letters = []
 
-n = int(input())
-m = int(input())
+    for char in cleaned_string:
+        if char.isalpha():
+            letters.append(char)
+        elif char.isdigit():
+            digits.append(char)
+        else:
+            special_chars.append(char)
 
-if is_prime(m):
-    print(-1)
-else:
-    prime_list = sieve(1 + n)
-    count = 0
-    result = -1
-    for i in range(2, 1 + n):
-        if prime_list[i]:
-            count += 1
-            if count == m:
-                result = i
-                break
-    print(result)
+    letters.sort()
+    digits.sort()
+
+    sorted_string = ''.join(special_chars) + ''.join(digits) + ''.join(letters)
+
+    return sorted_string
+
+
+input_string = input("لطفا رشته ورودی را وارد کنید: ")
+output_string = sort_string(input_string)
+print(output_string)
